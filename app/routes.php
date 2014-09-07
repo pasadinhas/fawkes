@@ -13,5 +13,10 @@
 
 Route::get('/', [
     'as' => 'home',
-    'uses' => 'PagesController@home'
+    'uses' => 'PageController@home'
+]);
+
+Route::get('/login', [
+    'as' => 'login',
+    'uses' => 'SessionController@store'
 ]);

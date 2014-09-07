@@ -117,7 +117,9 @@ return array(
         'Way\Generators\GeneratorsServiceProvider',
         'Laracasts\Flash\FlashServiceProvider',
         'Laracasts\Commander\CommanderServiceProvider',
-        'Laracasts\Validation\ValidationServiceProvider',),
+        'Laracasts\Validation\ValidationServiceProvider',
+        'LaravelOAuth\OAuthServiceProvider',
+    ),
     /*
     |--------------------------------------------------------------------------
     | Service Provider Manifest
@@ -181,6 +183,8 @@ return array(
         'URL'               => 'Illuminate\Support\Facades\URL',
         'Validator'         => 'Illuminate\Support\Facades\Validator',
         'View'              => 'Illuminate\Support\Facades\View',
-        'Flash'             => 'Laracasts\Flash\Flash'),
+        'Flash'             => 'Laracasts\Flash\Flash',
+        'OAuth' => 'LaravelOAuth\Facade\OAuth',
+    ),
 
 );

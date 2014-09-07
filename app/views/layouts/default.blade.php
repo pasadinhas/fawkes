@@ -9,9 +9,11 @@
 </head>
 <body>
 
-    <div class="container">
-        @yield('content')
-    </div>
+    @include('layouts.partials.navbar')
+
+    @yield('content')
+
+    <!--@include('layouts.partials.footer')-->
 
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 

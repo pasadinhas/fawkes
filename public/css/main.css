@@ -1,2 +1,16 @@
+html {
+  position: relative;
+  min-height: 100%; }
+
 body {
-  padding-top: 70px; }
+  padding-top: 70px;
+  margin-bottom: 60px; }
+
+body > .footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  background-color: #222;
+  padding: 15px; }
