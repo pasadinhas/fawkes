@@ -1,11 +1,11 @@
-<?php
+<?php namespace Fawkes\Authentication;
 
 use Fawkes\Users\RegisterUserCommand;
 use Fawkes\Users\UserRepository;
 use Laracasts\Commander\CommanderTrait;
 use Laracasts\Commander\CommandHandler;
 
-use Illuminate\Auth\Guard as Auth;
+use Illuminate\Auth\AuthManager as Auth;
 
 class LoginUserCommandHandler implements CommandHandler
 {
@@ -21,13 +21,13 @@ class LoginUserCommandHandler implements CommandHandler
     private $auth;
 
     /**
-     * @param UserRepository        $userRepository
-     * @param Illuminate\Auth\Guard $auth
+     * @param UserRepository               $userRepository
+     * @param \Illuminate\Auth\AuthManager $auth
      */
     public function __construct(UserRepository $userRepository, Auth $auth)
     {
         $this->userRepository = $userRepository;
-        $this->auth = $auth;
+        $this->auth = $auth->driver();
     }
 
     /**
@@ -39,12 +39,11 @@ class LoginUserCommandHandler implements CommandHandler
      */
     public function handle($command)
     {
-        $user = $this->userRepository->findByUsername($command->person['username']);
+        $user = $this->userRepository->findByUsername($command->person->username);
 
         if (!$user)
         {
-            $registerUserCommand = new RegisterUserCommand($command->person);
-            $user = $this->execute($registerUserCommand);
+            $user = $this->execute(RegisterUserCommand::class, ['person' => $command->person]);
         }
 
         $this->auth->login($user);

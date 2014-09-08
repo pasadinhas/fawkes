@@ -20,3 +20,8 @@ Route::get('/login', [
     'as' => 'login',
     'uses' => 'SessionController@store'
 ]);
+
+Route::get('/logout', [
+    'as' => 'logout',
+    'uses' => 'SessionController@destroy'
+]);

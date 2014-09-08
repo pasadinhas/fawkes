@@ -21,7 +21,7 @@ class UserRepository
     {
         $user = User::register($name, $istId, $email);
 
-        User::save($user);
+        $user->save();
 
         return $user;
     }

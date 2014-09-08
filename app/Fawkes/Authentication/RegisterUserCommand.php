@@ -1,4 +1,4 @@
-<?php namespace Fawkes\Users;
+<?php namespace Fawkes\Authentication;
 
 class RegisterUserCommand {
     /**
@@ -7,9 +7,9 @@ class RegisterUserCommand {
     public $person;
 
     /**
-     * @param array $person
+     * @param $person
      */
-    public function __construct(array $person)
+    public function __construct($person)
     {
         $this->person = $person;
     }

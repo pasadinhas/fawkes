@@ -1,8 +1,9 @@
 <?php
 
-use Fawkes\Users\LoginUserCommand;
+use Fawkes\Authentication\LoginUserCommand;
 use Illuminate\Support\Facades\Redirect;
 use Laracasts\Commander\CommanderTrait;
+use OAuth\Common\Storage\Session;
 
 class SessionController extends \BaseController {
 
@@ -15,6 +16,7 @@ class SessionController extends \BaseController {
 	 */
 	public function store()
 	{
+        OAuth::setHttpClient('CurlClient');
         $fenix = OAuth::consumer('FenixEdu');
         $code = Input::get('code');
 
@@ -27,10 +29,26 @@ class SessionController extends \BaseController {
 
         $person = $fenix->getPerson();
 
-        $command = new LoginUserCommand($person);
-        $user = $this->execute($command);
+        $user = $this->execute(LoginUserCommand::class, ['person' => $person]);
 
         return Redirect::intended('/');
 	}
+
+    /**
+     * Logout a user.
+     *
+     * @return Response
+     */
+    public function destroy()
+    {
+
+        // FIXME: extract to command
+
+        $session = new Session();
+        $session->clearToken('FenixEdu');
+        $session->clearAuthorizationState('FenixEdu');
+        Auth::logout();
+        return Redirect::route('home');
+    }
 
 }

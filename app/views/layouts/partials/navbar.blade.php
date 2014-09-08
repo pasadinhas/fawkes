@@ -15,7 +15,13 @@
 
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="{{ login_url() }}">Login</a></li>
+                <li>
+                @if (Auth::check())
+                    {{ link_to_route('logout', 'Logout') }}
+                @else
+                    <a href="{{ login_url() }}">Login</a>
+                @endif
+                </li>
             </ul>
         </div><!--/.nav-collapse -->
     </div>

@@ -1,5 +1,6 @@
-<?php namespace Fawkes\Users;
+<?php namespace Fawkes\Authentication;
 
+use Fawkes\Users\UserRepository;
 use Laracasts\Commander\CommandHandler;
 
 class RegisterUserCommandHandler implements CommandHandler {
@@ -21,7 +22,13 @@ class RegisterUserCommandHandler implements CommandHandler {
      */
     public function handle($command)
     {
-        $user = $this->userRepository->registerUser($command->person);
+        $user = $this->userRepository->registerUser(
+            $command->person->name,
+            $command->person->username,
+            $command->person->email
+        );
+
+        return $user;
     }
 
 }
