@@ -1,11 +1,25 @@
 <?php namespace Fawkes\Authentication;
 
-class LoginUserCommand {
+use OAuth\OAuth2\Token\TokenInterface;
 
+class LoginUserCommand {
+    /**
+     * @var
+     */
     public $person;
 
-    public function __construct($person)
+    /**
+     * @var \OAuth\OAuth2\Token\TokenInterface
+     */
+    public $token;
+
+    /**
+     * @param                $person
+     * @param TokenInterface $token
+     */
+    public function __construct($person, TokenInterface $token)
     {
         $this->person = $person;
+        $this->token = $token;
     }
 }

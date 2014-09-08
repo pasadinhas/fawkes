@@ -25,11 +25,10 @@ class SessionController extends \BaseController {
             return Redirect::to(login_url());
         }
 
-        $fenix->requestAccessToken($code);
-
+        $token = $fenix->requestAccessToken($code);
         $person = $fenix->getPerson();
 
-        $user = $this->execute(LoginUserCommand::class, ['person' => $person]);
+        $this->execute(LoginUserCommand::class, compact('person', 'token'));
 
         return Redirect::intended('/');
 	}

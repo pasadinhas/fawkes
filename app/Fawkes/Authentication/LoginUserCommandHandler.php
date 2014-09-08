@@ -1,6 +1,6 @@
 <?php namespace Fawkes\Authentication;
 
-use Fawkes\Users\RegisterUserCommand;
+use Fawkes\Authentication\RegisterUserCommand;
 use Fawkes\Users\UserRepository;
 use Laracasts\Commander\CommanderTrait;
 use Laracasts\Commander\CommandHandler;
@@ -43,7 +43,13 @@ class LoginUserCommandHandler implements CommandHandler
 
         if (!$user)
         {
-            $user = $this->execute(RegisterUserCommand::class, ['person' => $command->person]);
+            $person = $command->person;
+            $token = $command->token;
+            $user = $this->execute(RegisterUserCommand::class, compact('person', 'token'));
+        }
+        else
+        {
+            $this->userRepository->updateUserToken($user, $command->token);
         }
 
         $this->auth->login($user);

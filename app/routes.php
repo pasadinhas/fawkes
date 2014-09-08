@@ -11,17 +11,36 @@
 |
 */
 
+/**
+ * Pages
+ */
 Route::get('/', [
     'as' => 'home',
     'uses' => 'PageController@home'
 ]);
 
+/**
+ * Groups
+ */
+Route::group(['prefix' => 'groups'], function()
+{
+    Route::get('/', [
+        'as' => 'groups',
+        'uses' => 'GroupsController@index'
+    ]);
+});
+
+/**
+ * Authentication
+ */
 Route::get('/login', [
+    'before' => 'guest',
     'as' => 'login',
     'uses' => 'SessionController@store'
 ]);
 
 Route::get('/logout', [
+    'before' => 'auth',
     'as' => 'logout',
     'uses' => 'SessionController@destroy'
 ]);

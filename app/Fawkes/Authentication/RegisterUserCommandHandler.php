@@ -25,7 +25,10 @@ class RegisterUserCommandHandler implements CommandHandler {
         $user = $this->userRepository->registerUser(
             $command->person->name,
             $command->person->username,
-            $command->person->email
+            $command->person->email,
+            $command->token->getAccessToken(),
+            $command->token->getRefreshToken(),
+            $command->token->getEndOfLife()
         );
 
         return $user;
