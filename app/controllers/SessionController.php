@@ -1,6 +1,6 @@
 <?php
 
-use Fawkes\Authentication\LoginUserCommand;
+use Fawkes\Authentication\Commands\LoginUserCommand;
 use Illuminate\Support\Facades\Redirect;
 use Laracasts\Commander\CommanderTrait;
 use OAuth\Common\Storage\Session;

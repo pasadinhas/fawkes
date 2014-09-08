@@ -1,4 +1,4 @@
-<?php namespace Fawkes\Authentication;
+<?php namespace Fawkes\Authentication\Commands;
 
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 

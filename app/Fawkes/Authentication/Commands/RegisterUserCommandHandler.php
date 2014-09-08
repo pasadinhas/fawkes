@@ -1,9 +1,13 @@
-<?php namespace Fawkes\Authentication;
+<?php namespace Fawkes\Authentication\Commands;
 
 use Fawkes\Users\UserRepository;
 use Laracasts\Commander\CommandHandler;
+use Laracasts\Commander\Events\DispatchableTrait;
 
 class RegisterUserCommandHandler implements CommandHandler {
+
+    use DispatchableTrait;
+
     /**
      * @var UserRepository
      */
@@ -30,6 +34,8 @@ class RegisterUserCommandHandler implements CommandHandler {
             $command->token->getRefreshToken(),
             $command->token->getEndOfLife()
         );
+
+        $this->dispatchEventsFor($user);
 
         return $user;
     }

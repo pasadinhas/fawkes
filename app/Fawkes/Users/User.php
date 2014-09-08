@@ -5,10 +5,11 @@ use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableTrait;
 use Illuminate\Auth\Reminders\RemindableInterface;
 use Eloquent;
+use Laracasts\Commander\Events\EventGenerator;
 
 class User extends Eloquent implements UserInterface, RemindableInterface {
 
-	use UserTrait, RemindableTrait;
+	use UserTrait, RemindableTrait, EventGenerator;
 
 	/**
 	 * The database table used by the model.
@@ -33,7 +34,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 
     public static function register($name, $username, $email, $access_token, $refresh_token, $end_of_life)
     {
-        return new static([
+        $user = new static([
             'name' => $name,
             'username' => $username,
             'email' => $email,
@@ -41,5 +42,9 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
             'refresh_token' => $refresh_token,
             'token_end_of_life' => $end_of_life
         ]);
+
+        $user->raise(new UserRegistered($user));
+
+        return $user;
     }
 }
