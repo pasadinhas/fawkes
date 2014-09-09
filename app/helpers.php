@@ -2,5 +2,5 @@
 
 function login_url()
 {
-    return (string) App::make('oauth')->consumer('FenixEdu')->getAuthorizationUri();
+    return (string) App::make('oauth')->make('FenixEdu')->getAuthorizationUri();
 }

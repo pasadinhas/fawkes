@@ -17,7 +17,7 @@ class SessionController extends \BaseController {
 	public function store()
 	{
         OAuth::setHttpClient('CurlClient');
-        $fenix = OAuth::consumer('FenixEdu');
+        $fenix = OAuth::make('FenixEdu', null, null, 'Fawkes\OAuth\FenixEduCacheDecorator');
         $code = Input::get('code');
 
         if (empty($code))
@@ -40,13 +40,12 @@ class SessionController extends \BaseController {
      */
     public function destroy()
     {
-
-        // FIXME: extract to command
-
-        $session = new Session();
+        $session = OAuth::makeStorage();
         $session->clearToken('FenixEdu');
         $session->clearAuthorizationState('FenixEdu');
+
         Auth::logout();
+
         return Redirect::route('home');
     }
 

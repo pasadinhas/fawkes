@@ -31,6 +31,9 @@ class UserRepository
      * @param $name
      * @param $username
      * @param $email
+     * @param $access_token
+     * @param $refresh_token
+     * @param $end_of_life
      *
      * @return static
      */
