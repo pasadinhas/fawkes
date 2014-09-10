@@ -5,6 +5,8 @@ use Fawkes\Users\UserRepository;
 use Laracasts\Commander\CommanderTrait;
 use Laracasts\Commander\CommandHandler;
 
+use Fenix;
+
 use Illuminate\Auth\AuthManager as Auth;
 
 class LoginUserCommandHandler implements CommandHandler
@@ -39,17 +41,19 @@ class LoginUserCommandHandler implements CommandHandler
      */
     public function handle($command)
     {
-        $user = $this->userRepository->findByUsername($command->person->username);
+        $token = Fenix::requestAccessToken($command->code);
+
+        $person = Fenix::getPerson();
+
+        $user = $this->userRepository->findByUsername($person->username);
 
         if (!$user)
         {
-            $person = $command->person;
-            $token = $command->token;
             $user = $this->execute(RegisterUserCommand::class, compact('person', 'token'));
         }
         else
         {
-            $this->userRepository->updateUserToken($user, $command->token);
+            $this->userRepository->updateUserToken($user, $token);
         }
 
         $this->auth->login($user);

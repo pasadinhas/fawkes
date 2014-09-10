@@ -7,6 +7,11 @@ use Illuminate\Auth\Reminders\RemindableInterface;
 use Eloquent;
 use Laracasts\Commander\Events\EventGenerator;
 
+/**
+ * @property mixed access_token
+ * @property mixed refresh_token
+ * @property mixed token_end_of_life
+ */
 class User extends Eloquent implements UserInterface, RemindableInterface {
 
 	use UserTrait, RemindableTrait, EventGenerator;

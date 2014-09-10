@@ -1,6 +1,6 @@
 <?php
 
-class PageController extends \BaseController {
+class PagesController extends \BaseController {
 
     public function home()
     {

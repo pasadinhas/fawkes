@@ -1,4 +1,4 @@
-<?php namespace Fawkes\OAuth;
+<?php namespace Fawkes\Fenix;
 
 
 use Cache, Auth;
@@ -38,7 +38,7 @@ class FenixEduCacheDecorator extends FenixEduDecorator {
         {
             return $this->requestJSONWithoutCache($path, $method, $body, $extraHeaders);
         }
-var_dump("\n\nCache this! $path \n\n");
+
         if (Cache::has($key)) return Cache::get($key);
 
         $response = $this->requestJSONWithoutCache($path, $method, $body, $extraHeaders);

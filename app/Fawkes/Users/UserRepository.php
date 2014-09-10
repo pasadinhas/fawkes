@@ -5,7 +5,7 @@ use OAuth\OAuth2\Token\TokenInterface;
 class UserRepository
 {
     /**
-     * @var \User
+     * @var User
      */
     private $user;
 
@@ -25,6 +25,16 @@ class UserRepository
     public function findByUsername($username)
     {
         return $this->user->where('username', $username)->first() ?: null;
+    }
+
+    /**
+     * @param $id
+     *
+     * @return mixed
+     */
+    public function find($id)
+    {
+        return $this->user->find($id);
     }
 
     /**

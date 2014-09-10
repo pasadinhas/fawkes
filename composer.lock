@@ -722,16 +722,16 @@
         },
         {
             "name": "pasadinhas/laravel-oauth",
-            "version": "0.1.4",
+            "version": "0.1.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/pasadinhas/laravel-oauth.git",
-                "reference": "0a1ef9289e29b87ac178a3fc8f0bbc6c47616a2c"
+                "reference": "0159f93202917c117034764139d34536b6d7ca23"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pasadinhas/laravel-oauth/zipball/0a1ef9289e29b87ac178a3fc8f0bbc6c47616a2c",
-                "reference": "0a1ef9289e29b87ac178a3fc8f0bbc6c47616a2c",
+                "url": "https://api.github.com/repos/pasadinhas/laravel-oauth/zipball/0159f93202917c117034764139d34536b6d7ca23",
+                "reference": "0159f93202917c117034764139d34536b6d7ca23",
                 "shasum": ""
             },
             "require": {
@@ -769,7 +769,7 @@
                 "pasadinhas",
                 "php"
             ],
-            "time": "2014-09-09 14:32:44"
+            "time": "2014-09-09 14:49:26"
         },
         {
             "name": "pasadinhas/oauth",

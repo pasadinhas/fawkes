@@ -16,7 +16,7 @@
  */
 Route::get('/', [
     'as' => 'home',
-    'uses' => 'PageController@home'
+    'uses' => 'PagesController@home'
 ]);
 
 /**
@@ -28,6 +28,18 @@ Route::group(['prefix' => 'groups'], function()
         'as' => 'groups',
         'uses' => 'GroupsController@index'
     ]);
+});
+
+Route::get('/me', [
+    'before' => 'auth',
+    'as' => 'profile',
+    'uses' => 'ProfilesController@me'
+]);
+
+Route::get('/degrees', function()
+{
+    foreach (Fenix::getDegrees() as $degree)
+        echo "<li>$degree->name</li>";
 });
 
 /**

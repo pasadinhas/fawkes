@@ -16,17 +16,12 @@ class SessionController extends \BaseController {
 	 */
 	public function store()
 	{
-        OAuth::setHttpClient('CurlClient');
-        $fenix = OAuth::make('FenixEdu', null, null, 'Fawkes\OAuth\FenixEduCacheDecorator');
         $code = Input::get('code');
 
         if (empty($code))
         {
             return Redirect::to(login_url());
         }
-
-        $token = $fenix->requestAccessToken($code);
-        $person = $fenix->getPerson();
 
         $this->execute(LoginUserCommand::class, compact('person', 'token'));
 

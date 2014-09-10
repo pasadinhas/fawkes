@@ -114,11 +114,14 @@ return array(
         'Illuminate\Validation\ValidationServiceProvider',
         'Illuminate\View\ViewServiceProvider',
         'Illuminate\Workbench\WorkbenchServiceProvider',
+
         'Way\Generators\GeneratorsServiceProvider',
         'Laracasts\Flash\FlashServiceProvider',
         'Laracasts\Commander\CommanderServiceProvider',
         'Laracasts\Validation\ValidationServiceProvider',
         'LaravelOAuth\OAuthServiceProvider',
+
+        'Fawkes\Fenix\FenixServiceProvider',
     ),
     /*
     |--------------------------------------------------------------------------
@@ -184,7 +187,10 @@ return array(
         'Validator'         => 'Illuminate\Support\Facades\Validator',
         'View'              => 'Illuminate\Support\Facades\View',
         'Flash'             => 'Laracasts\Flash\Flash',
-        'OAuth' => 'LaravelOAuth\Facade\OAuth',
+
+        'OAuth'             => 'LaravelOAuth\Facade\OAuth',
+
+        'Fenix'             => 'Fawkes\Fenix\Fenix',
     ),
 
 );
